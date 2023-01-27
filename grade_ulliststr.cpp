@@ -630,7 +630,7 @@ TEST(UnrolledList, Back_PushFront)
 	EXPECT_EQ(list->back(), "ious");
 
 	delete list;
-}
+} 
 int main(int argc, char* argv[]) {
   ::testing::InitGoogleTest(&argc,argv);
   return RUN_ALL_TESTS();

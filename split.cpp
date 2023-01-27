@@ -12,12 +12,50 @@ the function below should be the only one in this file.
 
 #include "split.h"
 
-/* Add a prototype for a helper function here if you need */
+void moveThrough(Node*& input);
 
 void split(Node*& in, Node*& odds, Node*& evens)
 {
-  /* Add code here */
-// WRITE YOUR CODE HERE
+  if (in == nullptr){
+    return;
+  } else if (in->value % 2 == 0){
+    if (evens == nullptr){
+      evens = in;
+      in = in->next;
+      evens->next = nullptr;
+    } else {
+      Node* temp = evens;
+      moveThrough(temp);
+      temp->next = in;
+      in = in->next;
+      temp = temp->next;
+      temp->next = nullptr;
+    }
+  } else {
+    if (odds == nullptr){
+      odds = in;
+      in = in->next;
+      odds->next = nullptr;
+    } else {
+      Node* temp = odds;
+      moveThrough(temp);
+      temp->next = in;
+      in = in->next;
+      temp = temp->next;
+      temp->next = nullptr;
+    }
+  }
+
+  split(in, odds, evens);
 }
 
-/* If you needed a helper function, write it here */
+
+void moveThrough(Node*& input)
+{
+  if (input->next == nullptr){
+    return;
+  } else {
+    input = input->next;
+    moveThrough(input);
+  }
+}
